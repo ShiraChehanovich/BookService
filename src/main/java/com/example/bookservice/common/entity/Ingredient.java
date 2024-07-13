@@ -14,6 +14,10 @@ public class Ingredient {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+    @ManyToOne
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipe recipe;
+
     @Column(nullable = false)
     private double quantity;
 
@@ -40,6 +44,14 @@ public class Ingredient {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public double getQuantity() {
