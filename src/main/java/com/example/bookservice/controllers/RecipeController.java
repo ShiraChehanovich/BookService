@@ -66,4 +66,10 @@ public class RecipeController {
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}/price")
+    public ResponseEntity<Double> getRecipePrice(@PathVariable int id) {
+        double price = recipeService.calculateRecipePrice(id);
+        return ResponseEntity.ok(price);
+    }
 }

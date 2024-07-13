@@ -70,4 +70,11 @@ public class RecipeService {
         Recipe recipe = getRecipeById(id);
         recipeRepository.delete(recipe);
     }
+
+    public double calculateRecipePrice(int id) {
+        Recipe recipe = getRecipeById(id);
+        return recipe.getIngredients().stream()
+                .mapToDouble(ingredient -> ingredient.getProduct().getPrice() * ingredient.getQuantity())
+                .sum();
+    }
 }
