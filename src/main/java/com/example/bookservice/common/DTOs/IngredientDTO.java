@@ -1,4 +1,4 @@
-package com.example.bookservice.common.entity;
+package com.example.bookservice.common.DTOs;
 
 
 public class IngredientDTO {

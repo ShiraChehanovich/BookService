@@ -1,4 +1,4 @@
-package com.example.bookservice.common.entity;
+package com.example.bookservice.common.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

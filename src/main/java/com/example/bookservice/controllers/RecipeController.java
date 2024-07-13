@@ -1,9 +1,9 @@
 package com.example.bookservice.controllers;
 
-import com.example.bookservice.common.entity.Ingredient;
-import com.example.bookservice.common.entity.Product;
-import com.example.bookservice.common.entity.Recipe;
-import com.example.bookservice.common.entity.RecipeDTO;
+import com.example.bookservice.common.entities.Ingredient;
+import com.example.bookservice.common.entities.Product;
+import com.example.bookservice.common.entities.Recipe;
+import com.example.bookservice.common.DTOs.RecipeDTO;
 import com.example.bookservice.service.RecipeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

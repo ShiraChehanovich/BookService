@@ -1,6 +1,6 @@
 package com.example.bookservice.service;
 
-import com.example.bookservice.common.entity.Product;
+import com.example.bookservice.common.entities.Product;
 import com.example.bookservice.exception.ResourceNotFoundException;
 import com.example.bookservice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

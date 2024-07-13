@@ -1,6 +1,8 @@
 package com.example.bookservice.service;
 
-import com.example.bookservice.common.entity.*;
+import com.example.bookservice.common.DTOs.IngredientDTO;
+import com.example.bookservice.common.DTOs.RecipeDTO;
+import com.example.bookservice.common.entities.*;
 import com.example.bookservice.exception.ResourceNotFoundException;
 import com.example.bookservice.repository.ProductRepository;
 import com.example.bookservice.repository.RecipeRepository;

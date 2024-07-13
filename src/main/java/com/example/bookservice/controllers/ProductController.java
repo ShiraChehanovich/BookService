@@ -1,6 +1,6 @@
 package com.example.bookservice.controllers;
 
-import com.example.bookservice.common.entity.Product;
+import com.example.bookservice.common.entities.Product;
 import com.example.bookservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
