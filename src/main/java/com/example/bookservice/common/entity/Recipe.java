@@ -13,19 +13,9 @@ public class Recipe {
     private String title;
     private String author;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "recipe_id")
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ingredient> ingredients;
 
-    public Recipe() {
-    }
-
-    public Recipe(int id, String title, String author, List<Ingredient> ingredients) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.ingredients = ingredients;
-    }
 
     public int getId() {
         return id;

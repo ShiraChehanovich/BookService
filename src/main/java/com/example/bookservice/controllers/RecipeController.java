@@ -1,6 +1,9 @@
 package com.example.bookservice.controllers;
 
+import com.example.bookservice.common.entity.Ingredient;
+import com.example.bookservice.common.entity.Product;
 import com.example.bookservice.common.entity.Recipe;
+import com.example.bookservice.common.entity.RecipeDTO;
 import com.example.bookservice.service.RecipeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -20,8 +24,21 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @PostMapping
-    public ResponseEntity<Recipe> createRecipe(@Valid @RequestBody Recipe recipe) {
-        Recipe createdRecipe = recipeService.createRecipe(recipe);
+    public ResponseEntity<Recipe> createRecipe(@Valid @RequestBody RecipeDTO recipeDTO) {
+        Recipe recipe = new Recipe();
+        recipe.setTitle(recipeDTO.getTitle());
+        recipe.setAuthor(recipeDTO.getAuthor());
+
+        List<Ingredient> ingredients = recipeDTO.getIngredients().stream().map(dto -> {
+            Ingredient ingredient = new Ingredient();
+            Product product = new Product();
+            product.setId(dto.getProductId());
+            ingredient.setProduct(product);
+            ingredient.setQuantity(dto.getQuantity());
+            return ingredient;
+        }).collect(Collectors.toList());
+
+        Recipe createdRecipe = recipeService.createRecipe(recipe, ingredients);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 
