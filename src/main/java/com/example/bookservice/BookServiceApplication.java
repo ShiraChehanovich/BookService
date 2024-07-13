@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.example.bookservice.repository")
-@EntityScan(basePackages = "com.example.bookservice.common.entity")
+@EntityScan(basePackages = "com.example.bookservice.common.entities")
 public class BookServiceApplication {
 
 	public static void main(String[] args) {
