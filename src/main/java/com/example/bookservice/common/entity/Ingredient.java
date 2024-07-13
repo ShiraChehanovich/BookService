@@ -22,7 +22,7 @@ public class Ingredient {
     private double quantity;
 
     public Ingredient() {
-        // Default constructor required by JPA
+
     }
 
     public Ingredient(Product product, double quantity) {

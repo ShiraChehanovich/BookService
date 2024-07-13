@@ -1,8 +1,6 @@
 package com.example.bookservice.service;
 
-import com.example.bookservice.common.entity.Ingredient;
-import com.example.bookservice.common.entity.Product;
-import com.example.bookservice.common.entity.Recipe;
+import com.example.bookservice.common.entity.*;
 import com.example.bookservice.exception.ResourceNotFoundException;
 import com.example.bookservice.repository.ProductRepository;
 import com.example.bookservice.repository.RecipeRepository;
@@ -45,12 +43,26 @@ public class RecipeService {
                 .orElseThrow(() -> new ResourceNotFoundException("Recipe not found for this id :: " + id));
     }
 
-    public Recipe updateRecipe(int id, Recipe recipeDetails) {
+    @Transactional
+    public Recipe updateRecipe(int id, RecipeDTO recipeDTO) {
         Recipe recipe = getRecipeById(id);
 
-        recipe.setTitle(recipeDetails.getTitle());
-        recipe.setAuthor(recipeDetails.getAuthor());
-        recipe.setIngredients(recipeDetails.getIngredients());
+        recipe.setTitle(recipeDTO.getTitle());
+        recipe.setAuthor(recipeDTO.getAuthor());
+
+        // Clear existing ingredients
+        recipe.getIngredients().clear();
+
+        // Process each ingredient from DTO
+        for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
+            Ingredient ingredient = new Ingredient();
+            Product product = productRepository.findById(ingredientDTO.getProductId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Product not found for this id :: " + ingredientDTO.getProductId()));
+            ingredient.setProduct(product);
+            ingredient.setQuantity(ingredientDTO.getQuantity());
+            ingredient.setRecipe(recipe);
+            recipe.getIngredients().add(ingredient);
+        }
 
         return recipeRepository.save(recipe);
     }
