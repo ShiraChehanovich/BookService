@@ -1,6 +1,6 @@
 package com.example.bookservice.controllers;
 
-import com.example.bookservice.common.entity.User;
+import com.example.bookservice.common.entities.User;
 import com.example.bookservice.common.enums.UserRole;
 import com.example.bookservice.service.UserService;
 import jakarta.validation.Valid;

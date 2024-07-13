@@ -1,6 +1,6 @@
 package com.example.bookservice.repository;
 
-import com.example.bookservice.common.entity.User;
+import com.example.bookservice.common.entities.User;
 import com.example.bookservice.common.enums.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;

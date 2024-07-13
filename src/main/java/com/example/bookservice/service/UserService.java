@@ -1,6 +1,6 @@
 package com.example.bookservice.service;
 
-import com.example.bookservice.common.entity.User;
+import com.example.bookservice.common.entities.User;
 import com.example.bookservice.exception.ResourceAlreadyExistsException;
 import com.example.bookservice.exception.ResourceNotFoundException;
 import com.example.bookservice.repository.UserRepository;
