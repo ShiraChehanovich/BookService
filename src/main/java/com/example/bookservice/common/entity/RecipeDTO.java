@@ -4,11 +4,11 @@ package com.example.bookservice.common.entity;
 import java.util.List;
 
 public class RecipeDTO {
+
     private String title;
     private String author;
+    private String instructions;
     private List<IngredientDTO> ingredients;
-
-    // Getters and setters
 
     public String getTitle() {
         return title;
@@ -16,6 +16,14 @@ public class RecipeDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public String getAuthor() {

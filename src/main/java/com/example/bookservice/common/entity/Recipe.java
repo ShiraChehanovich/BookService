@@ -14,6 +14,10 @@ public class Recipe {
     private String title;
     private String author;
 
+    @Lob
+    @Column(columnDefinition = "TEXT")
+    private String instructions;
+
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Ingredient> ingredients;
@@ -41,6 +45,14 @@ public class Recipe {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     public List<Ingredient> getIngredients() {

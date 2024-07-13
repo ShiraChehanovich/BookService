@@ -49,7 +49,7 @@ public class RecipeService {
 
         recipe.setTitle(recipeDTO.getTitle());
         recipe.setAuthor(recipeDTO.getAuthor());
-
+        recipe.setInstructions(recipeDTO.getInstructions());
         recipe.getIngredients().clear();
 
         for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
@@ -65,6 +65,7 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
+    @Transactional
     public void deleteRecipe(int id) {
         Recipe recipe = getRecipeById(id);
         recipeRepository.delete(recipe);

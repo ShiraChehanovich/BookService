@@ -28,6 +28,7 @@ public class RecipeController {
         Recipe recipe = new Recipe();
         recipe.setTitle(recipeDTO.getTitle());
         recipe.setAuthor(recipeDTO.getAuthor());
+        recipe.setInstructions(recipeDTO.getInstructions());
 
         List<Ingredient> ingredients = recipeDTO.getIngredients().stream().map(dto -> {
             Ingredient ingredient = new Ingredient();
