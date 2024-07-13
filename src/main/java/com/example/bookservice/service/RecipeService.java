@@ -50,10 +50,8 @@ public class RecipeService {
         recipe.setTitle(recipeDTO.getTitle());
         recipe.setAuthor(recipeDTO.getAuthor());
 
-        // Clear existing ingredients
         recipe.getIngredients().clear();
 
-        // Process each ingredient from DTO
         for (IngredientDTO ingredientDTO : recipeDTO.getIngredients()) {
             Ingredient ingredient = new Ingredient();
             Product product = productRepository.findById(ingredientDTO.getProductId())
