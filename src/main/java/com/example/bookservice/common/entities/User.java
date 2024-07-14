@@ -3,12 +3,23 @@ package com.example.bookservice.common.entities;
 import com.example.bookservice.common.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-//import javax.validation.constraints.NotBlank;
+import java.util.Collection;
+import java.util.List;
 
+@Setter
 @Entity
 @Table(name = "users")
-public class User {
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+//@Data
+//@Builder
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,36 +27,61 @@ public class User {
 
     @Column(name = "user_name", nullable = false, unique = true)
     @NotBlank(message = "Username is mandatory")
-    private String userName;
+    private String login;
+
+    @Column(name = "password", nullable = false)
+    private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
+//    @Column(name = "role", nullable = false)
     private UserRole role;
 
+
+    public User(String login, String encryptedPassword, UserRole role) {
+        this.login = login;
+        this.password = encryptedPassword;
+        this.role = role;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority((role.name())));
+    }
 
     public UserRole getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
-
-
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    @Override
+    public String getUsername() {
+        return login;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

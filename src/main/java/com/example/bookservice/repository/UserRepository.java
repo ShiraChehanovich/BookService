@@ -1,16 +1,15 @@
 package com.example.bookservice.repository;
 
 import com.example.bookservice.common.entities.User;
-import com.example.bookservice.common.enums.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import java.util.List;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Optional;
 
 //@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    UserDetails findByLogin(String login);
 
+//    Optional<User> findByLogin(String userName);
 
-    Optional<User> findById(long id);
-    boolean existsByUserName(String username);
 }

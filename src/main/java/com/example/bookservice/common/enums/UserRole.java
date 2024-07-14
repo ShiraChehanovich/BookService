@@ -1,25 +1,12 @@
 package com.example.bookservice.common.enums;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
+import java.util.Iterator;
+
 public enum UserRole {
     ADMIN,
     USER
 
-//    private final int value;
-//
-//    UserRole(int value) {
-//        this.value = value;
-//    }
-//
-//    public int getValue() {
-//        return value;
-//    }
-//
-//    public static UserRole fromValue(int value) {
-//        for (UserRole role : values()) {
-//            if (role.getValue() == value) {
-//                return role;
-//            }
-//        }
-//        throw new IllegalArgumentException("Unknown role value: " + value);
-//    }
 }
