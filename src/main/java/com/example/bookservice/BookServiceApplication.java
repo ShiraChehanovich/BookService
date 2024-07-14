@@ -8,7 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.example.bookservice"})
 @EnableJpaRepositories(basePackages = "com.example.bookservice.repository")
 @EntityScan(basePackages = "com.example.bookservice.common.entities")
 public class BookServiceApplication {
