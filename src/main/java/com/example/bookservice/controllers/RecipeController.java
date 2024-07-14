@@ -5,6 +5,7 @@ import com.example.bookservice.common.entities.Product;
 import com.example.bookservice.common.entities.Recipe;
 import com.example.bookservice.common.DTOs.RecipeDTO;
 import com.example.bookservice.service.RecipeService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,7 @@ public class RecipeController {
     private RecipeService recipeService;
 
     @PostMapping
+    @SecurityRequirement(name = "Authorization")
     public ResponseEntity<Recipe> createRecipe(@Valid @RequestBody RecipeDTO recipeDTO) {
         Recipe recipe = new Recipe();
         recipe.setTitle(recipeDTO.getTitle());
@@ -44,30 +46,35 @@ public class RecipeController {
     }
 
     @GetMapping
+    @SecurityRequirement(name = "Authorization")
     public ResponseEntity<List<Recipe>> getAllRecipes() {
         List<Recipe> recipes = recipeService.getAllRecipes();
         return new ResponseEntity<>(recipes, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
+    @SecurityRequirement(name = "Authorization")
     public ResponseEntity<Recipe> getRecipe(@PathVariable int id) {
         Recipe recipe = recipeService.getRecipeById(id);
         return ResponseEntity.ok(recipe);
     }
 
     @PutMapping("/{id}")
+    @SecurityRequirement(name = "Authorization")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable int id, @Valid @RequestBody RecipeDTO recipeDTO) {
         Recipe updatedRecipe = recipeService.updateRecipe(id, recipeDTO);
         return ResponseEntity.ok(updatedRecipe);
     }
 
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "Authorization")
     public ResponseEntity<Void> deleteRecipe(@PathVariable int id) {
         recipeService.deleteRecipe(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}/price")
+    @SecurityRequirement(name = "Authorization")
     public ResponseEntity<Double> getRecipePrice(@PathVariable int id) {
         double price = recipeService.calculateRecipePrice(id);
         return ResponseEntity.ok(price);
